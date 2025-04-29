@@ -1,158 +1,187 @@
-Shop Savvy Frontend
-This is the frontend for an e-commerce website built with Vite, React, and Tailwind CSS. It provides a user-friendly interface for browsing products, managing a cart, checking out, and an admin dashboard for managing products, orders, and users. React Router is used for navigation, and React Context handles authentication state.
+# 🛍️ Shop Savvy Frontend
 
-Project Structure
+**Shop Savvy** is the frontend of a full-featured e-commerce platform built with **Vite**, **React**, and **Tailwind CSS**. It offers a seamless user experience for browsing products, managing a cart, placing orders, and administering store data through a secure dashboard.
+
+---
+
+## 🔧 Tech Stack
+
+- **Vite** – Lightning-fast frontend tooling
+- **React** – Component-based UI library
+- **Tailwind CSS** – Utility-first CSS framework
+- **React Router** – Client-side routing
+- **React Context** – Global state management (auth)
+- **Axios** – HTTP client
+- **JWT Decode** – Role-based route protection
+
+---
+
+## 🗂️ Project Structure
+
+```
 frontend/
-├── public/
-│   ├── favicon.ico              # Website favicon
-│   └── vite.svg                 # Vite logo (default)
+├── public/                     # Static files
+│   ├── favicon.ico
+│   └── vite.svg
 ├── src/
-│   ├── assets/                  # Static assets (images, fonts, etc.)
-│   │   └── logo.png             # Example logo for the app
-│   ├── components/              # Reusable UI components
-│   │   ├── Navbar.jsx           # Navigation bar component
-│   │   ├── Footer.jsx           # Footer component
-│   │   ├── ProductCard.jsx       # Component for displaying a product
-│   │   ├── ProtectedRoute.jsx   # Component to protect routes (e.g., admin)
-│   │   └── Sidebar.jsx          # Sidebar for admin dashboard navigation
-│   ├── context/                 # React Context for state management
-│   │   └── AuthContext.jsx      # Authentication context for user and token
-│   ├── pages/                   # Page components
-│   │   ├── Home.jsx             # Home page with featured products
-│   │   ├── ProductListing.jsx   # Product listing with filters
-│   │   ├── ProductDetail.jsx    # Single product details
-│   │   ├── Cart.jsx             # Shopping cart page
-│   │   ├── Checkout.jsx         # Checkout page for order placement
-│   │   ├── Profile.jsx          # User profile and order history
-│   │   ├── Login.jsx            # User login page
-│   │   ├── Register.jsx         # User registration page
-│   │   ├── OrderConfirmation.jsx # Order confirmation page
-│   │   ├── SearchResults.jsx    # Search results page
-│   │   ├── Category.jsx         # Category-specific product listing
-│   │   ├── AdminDashboard.jsx   # Admin dashboard for managing products, orders, users
-│   │   └── NotFound.jsx         # 404 page for invalid routes
-│   ├── routes/                  # Route definitions
-│   │   └── Router.jsx           # React Router configuration
-│   ├── styles/                  # Global styles
-│   │   └── index.css            # Tailwind CSS and global styles
-│   ├── App.jsx                  # Main app component
-│   ├── main.jsx                 # Entry point for React
-│   └── index.html               # HTML template for Vite
-├── .gitignore                   # Git ignore file
-├── package.json                 # Node.js dependencies and scripts
-├── vite.config.js               # Vite configuration
-└── README.md                    # This file
+│   ├── assets/                 # App assets (e.g. logo)
+│   ├── components/             # Reusable UI components
+│   ├── context/                # Authentication context
+│   ├── pages/                  # App pages/routes
+│   ├── routes/                 # React Router configuration
+│   ├── styles/                 # Tailwind CSS and global styles
+│   ├── App.jsx                 # Main App component
+│   ├── main.jsx                # React entry point
+│   └── index.html              # HTML template
+├── package.json
+├── vite.config.js
+└── README.md
+```
 
-Key Components
+---
 
-Pages: Individual React components for each route (e.g., Home.jsx, AdminDashboard.jsx).
-Components: Reusable UI elements like Navbar.jsx and ProductCard.jsx.
-Context: AuthContext.jsx manages user authentication state (token and role).
-Routes: Router.jsx defines client-side routes using React Router.
-Styles: index.css includes Tailwind CSS directives and custom styles.
+## 🚀 Features
 
-Setup Instructions
-Prerequisites
+### 🛒 User Features
 
-Node.js (v16 or higher)
-npm or yarn
-Backend server running (see backend README for setup)
+- Browse products by **category** or **search**
+- Add products to **cart**, proceed to **checkout**
+- View & edit **profile** and order history
+- **Authentication**: Login & Register
 
-Installation
+### 🔐 Admin Features
 
-Clone the repository and navigate to the frontend/ directory:cd frontend
+Accessible via `/admin` (admin-only):
 
+- **Manage Products**: Create, update, delete
+- **Manage Orders**: Update status (Pending, Shipped, Delivered)
+- **Manage Users**: View and delete users
 
-Install dependencies:npm install
+---
 
+## 📍 Routes
 
-Start the development server:npm run dev
+| Path                     | Description                              |
+|--------------------------|------------------------------------------|
+| `/`                      | Home page with featured products         |
+| `/products`              | All products listing                     |
+| `/product/:id`           | Single product detail                    |
+| `/cart`                  | Shopping cart                            |
+| `/checkout`              | Checkout page                            |
+| `/profile`               | User profile and order history           |
+| `/login`                 | Login page                               |
+| `/register`              | Registration page                        |
+| `/order/:id`             | Order confirmation                       |
+| `/search`                | Search results                           |
+| `/category/:categoryId`  | Filtered by category                     |
+| `/admin`                 | Admin dashboard (protected route)        |
+| `*`                      | 404 – Not Found                          |
 
-The app will run on http://localhost:5173 (or the port specified by Vite).
+---
 
-Environment Setup
+## 🔐 Admin Access
 
-The frontend communicates with the backend at http://localhost:5000 by default. Ensure the backend is running and accessible.
-If the backend is hosted elsewhere, update API endpoints in the frontend code (e.g., in axios calls).
+To access `/admin`:
 
-Features
+1. Login with an **admin user** account.
+2. Assign the `admin` role manually via:
+   - **MongoDB Compass**
+   - A custom script or backend admin API
 
-User Features:
-Browse products by category or search.
-Add products to cart and proceed to checkout.
-View and update user profile, including order history.
-Authentication (login and register).
+The `ProtectedRoute.jsx` component ensures only admins access dashboard routes.
 
+---
 
-Admin Features (accessible at /admin):
-Manage products (create, update, delete).
-View and update order statuses (e.g., Pending, Shipped, Delivered).
-Manage users (view, delete).
+## ⚙️ Setup Instructions
 
+### 📦 Prerequisites
 
-Responsive Design: Built with Tailwind CSS for mobile and desktop compatibility.
+- Node.js **v16+**
+- npm or yarn
+- Backend API server running at `http://localhost:5000`
 
-Routes
+### 🧰 Installation
 
-/: Home page with featured products.
-/products: Product listing page.
-/product/:id: Product detail page.
-/cart: Shopping cart.
-/checkout: Order checkout.
-/profile: User profile and order history.
-/login: User login.
-/register: User registration.
-/order/:id: Order confirmation.
-/search: Search results.
-/category/:categoryId: Category-specific products.
-/admin: Admin dashboard (protected, admin-only).
-*: 404 page for invalid routes.
+```bash
+# Clone the repo
+git clone <your-repo-url>
+cd frontend
 
-Admin Access
+# Install dependencies
+npm install
 
-To access the admin dashboard (/admin), log in with a user account that has the admin role.
-The backend controls role assignment. Set a user's role to admin in MongoDB (e.g., using MongoDB Compass) or via a script.
-The ProtectedRoute.jsx component ensures only admins can access the dashboard.
+# Run development server
+npm run dev
+```
 
-Dependencies
+The app will be available at `http://localhost:5173`.
 
-react: Core React library.
-react-dom: React DOM rendering.
-react-router-dom: Client-side routing.
-axios: HTTP client for API requests.
-jwt-decode: Decode JWT tokens for role-based access.
-vite: Build tool and development server.
+---
 
-Install dependencies via package.json:
-{
-  "dependencies": {
-    "axios": "^1.6.0",
-    "jwt-decode": "^3.1.2",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-router-dom": "^6.15.0"
-  },
-  "devDependencies": {
-    "vite": "^4.4.9"
-  }
+## 🌐 API Integration
+
+- Axios is used for API calls to: `http://localhost:5000/api`
+- Update API URLs in axios calls if backend is hosted elsewhere
+
+---
+
+## 🧪 Testing
+
+- Use **Jest** and **React Testing Library** for:
+  - Unit tests (components)
+  - Integration tests (API calls)
+
+---
+
+## 🎨 Styling
+
+- Tailwind CSS included via:
+  - `src/styles/index.css`
+  - CDN in `index.html` (if applicable)
+- Customize styling via Tailwind configuration and global CSS
+
+---
+
+## 🧩 Dependencies
+
+```json
+"dependencies": {
+  "axios": "^1.6.0",
+  "jwt-decode": "^3.1.2",
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "react-router-dom": "^6.15.0"
+},
+"devDependencies": {
+  "vite": "^4.4.9"
 }
+```
 
-Notes
+---
 
-Styling: Tailwind CSS is included via a CDN in index.html or configured in index.css. Customize styles in src/styles/index.css.
-API Integration: The frontend uses axios to communicate with the backend at http://localhost:5000/api.
-Security: Ensure JWT tokens are securely stored (e.g., in localStorage) and validated on each request.
-Testing: Add unit tests for components and integration tests for API calls using Jest and React Testing Library.
-Enhancements:
-Add modals for product/user editing in the admin dashboard.
-Implement pagination for product listings and search results.
-Integrate a payment gateway (e.g., Stripe) for checkout.
+## ✨ Enhancements To Consider
 
+- Add modals for product/user editing
+- Pagination on product listings & search
+- Stripe or another payment gateway integration
 
+---
 
-Running the Frontend
+## 📦 Production Build
 
-Development: npm run dev (starts Vite dev server).
-Production: Build with npm run build and serve the dist/ folder using a static server.
+```bash
+# Build for production
+npm run build
 
-For issues or contributions, please open a pull request or issue on the repository.
+# Serve from dist folder
+npm run preview
+```
+
+---
+
+## 🤝 Contributions
+
+Found a bug or want to contribute?
+
+- Open an **issue** or **pull request** on GitHub
+- Follow the existing coding style and add test coverage when possible
