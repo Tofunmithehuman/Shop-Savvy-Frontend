@@ -1,6 +1,6 @@
-# 🛍️ Shop Savvy Frontend
+# 🛍️ thehuman.store Frontend
 
-**Shop Savvy** is the frontend of a full-featured e-commerce platform built with **Vite**, **React**, and **Tailwind CSS**. It offers a seamless user experience for browsing products, managing a cart, placing orders, and administering store data through a secure dashboard.
+**thehuman.store** is the frontend of a full-featured e-commerce platform built with **Vite**, **React**, and **Tailwind CSS**. It offers a seamless user experience for browsing products, managing a cart, placing orders, and administering store data through a secure dashboard.
 
 ---
 
