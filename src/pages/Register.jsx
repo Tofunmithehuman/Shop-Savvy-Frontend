@@ -42,7 +42,7 @@ function Register() {
               <div className="mt-10">
                 <form>
                   <div className="flex flex-col gap-6">
-                    <div className="flex flex-col sm:flex-row sm:gap-4 gap-6">
+                    <div className="flex items-center gap-4">
                       <label className="w-full">
                         <p className="text-xs text-neutral-600 font-semibold mb-1">FIRST NAME</p>
                         <div className="border border-neutral-200 focus-within:border-primary-200 rounded px-4">
