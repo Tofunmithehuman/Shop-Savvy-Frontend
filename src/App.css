@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@font-face {
+  font-family: 'QurovaDEMO';
+  src: url('/fonts/QurovaDEMO-Medium-BF67a5c6382651c.otf') format('opentype');
+}
+@import "tailwindcss";
+
+
+html {
+  font-family: "Inter", sans-serif;
+}
+
+.QurovaDEMO {
+  font-family: "QurovaDEMO", sans-serif;
+}
+
+@theme {
+  --color-primary-50: #ffece5;
+  --color-primary-75: #fcd2c2;
+  --color-primary-100: #fcb59a;
+  --color-primary-200: #fa9874;
+  --color-primary-300: #f77a4a;
+  --color-primary-400: #f56630;
+  --color-primary-500: #eb5017;
+  --color-primary-600: #cc400c;
+  --color-primary-700: #ad3307;
+  --color-primary-800: #8f2802;
+  --color-primary-900: #711e00;
+
+  --color-secondary-50: #e3effc;
+  --color-secondary-75: #c6ddf7;
+  --color-secondary-100: #b6d8ff;
+  --color-secondary-200: #80bbff;
+  --color-secondary-300: #3d89df;
+  --color-secondary-400: #1671d9;
+  --color-secondary-500: #0d5eba;
+  --color-secondary-600: #034592;
+  --color-secondary-700: #04326b;
+  --color-secondary-800: #012657;
+  --color-secondary-900: #001633;
+
+  --color-neutral-50: #F9FAFB;
+  --color-neutral-75: #F7F9FC;
+  --color-neutral-100: #F0F2F5;
+  --color-neutral-200: #E4E7EC;
+  --color-neutral-300: #D0D5DD;
+  --color-neutral-400: #98A2B3;
+  --color-neutral-500: #667185;
+  --color-neutral-600: #475367;
+  --color-neutral-700: #344054;
+  --color-neutral-800: #1D2739;
+  --color-neutral-900: #101928;
+
+  --color-brown-50: #FBF1F1;
+  --color-brown-75: #F0E6E6;
+  --color-brown-100: #E4DBDB;
+  --color-brown-200: #CDC4C4;
+  --color-brown-300: #B7AFAF;
+  --color-brown-400: #A29999;
+  --color-brown-500: #8D8484;
+  --color-brown-600: #787070;
+  --color-brown-700: #645D5D;
+  --color-brown-800: #514A4A;
+  --color-brown-900: #3E3838;
+}
+
+
+/* Override browser autofill styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px transparent inset !important; 
+  -webkit-text-fill-color: #737373 !important;
+  background-color: transparent !important; 
+  transition: background-color 5000s ease-in-out 0s;
+}
