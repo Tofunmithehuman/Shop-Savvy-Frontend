@@ -32,7 +32,7 @@ function Login() {
             </div>
           </div>
 
-          <div className="Auth flex justify-center items-center min-h-[calc(100vh-104px)]">
+          <div className="Auth flex justify-center sm:items-center sm:min-h-[calc(100vh-104px)]">
             <div className="w-11/12 max-w-[400px] p-4 sm:p-0 bg-white overflow-auto">
               <div className="text-center">
                 <h1 className="text-base sm:text-xl text-neutral-600 font-semibold mb-1">Log In</h1>
