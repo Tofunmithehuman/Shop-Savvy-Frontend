@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import email from "../assets/email.svg";
 import passwordHide from "../assets/password-hide.svg";
 import passwordUnhide from "../assets/password-unhide.svg";
@@ -8,10 +8,54 @@ import { Link } from "react-router-dom";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
+  const [emailInput, setEmailInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let hasError = false;
+
+    // Email validation
+    if (!emailInput) {
+      setEmailError('Email is required');
+      hasError = true;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput)) {
+      setEmailError('Please enter a valid email');
+      hasError = true;
+    } else {
+      setEmailError('');
+    }
+
+    // Password validation
+    if (!passwordInput) {
+      setPasswordError('Password is required');
+      hasError = true;
+    } else {
+      setPasswordError('');
+    }
+
+    if (!hasError) {
+      // Proceed with login logic here
+      console.log('Logging in with:', { email: emailInput, password: passwordInput });
+    }
+  };
+
+  // Clear error messages after 3 seconds
+  useEffect(() => {
+    if (emailError || passwordError) {
+      const timer = setTimeout(() => {
+        setEmailError('');
+        setPasswordError('');
+      }, 3000);
+      return () => clearTimeout(timer); // Cleanup timer on unmount or error change
+    }
+  }, [emailError, passwordError]);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -40,28 +84,35 @@ function Login() {
               </div>
 
               <div className="mt-10">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div className="flex flex-col gap-6">
-                    <label htmlFor="email">
+                    <label htmlFor="email" className="relative">
                       <p className="text-xs text-neutral-600 font-semibold mb-1">EMAIL ADDRESS</p>
                       <div className="flex items-center border border-neutral-200 focus-within:border-primary-200 rounded px-4">
                         <input
                           type="email"
                           name="email"
                           id="email"
+                          value={emailInput}
+                          onChange={(e) => setEmailInput(e.target.value)}
                           className="w-full focus:outline-none focus:ring-0 py-3 text-xs text-neutral-500 bg-transparent"
                         />
                         <img src={email} alt="email" className="w-4 h-4" />
                       </div>
+                      {emailError && (
+                        <p className="text-xs text-red-500 mt-1 text-right">{emailError}</p>
+                      )}
                     </label>
 
-                    <label htmlFor="password">
+                    <label htmlFor="password" className="relative">
                       <p className="text-xs text-neutral-600 font-semibold mb-1">PASSWORD</p>
                       <div className="flex items-center border border-neutral-200 focus-within:border-primary-200 rounded px-4">
                         <input
                           type={showPassword ? "text" : "password"}
                           name="password"
                           id="password"
+                          value={passwordInput}
+                          onChange={(e) => setPasswordInput(e.target.value)}
                           className="w-full focus:outline-none focus:ring-0 py-3 text-xs text-neutral-500 bg-transparent"
                         />
                         <img
@@ -71,6 +122,9 @@ function Login() {
                           onClick={togglePasswordVisibility}
                         />
                       </div>
+                      {passwordError && (
+                        <p className="text-xs text-red-500 mt-1 text-right">{passwordError}</p>
+                      )}
                     </label>
 
                     <div>
@@ -90,7 +144,10 @@ function Login() {
                     </div>
 
                     <div>
-                      <button className="w-full bg-primary-500 text-white py-3 rounded text-sm font-semibold hover:bg-primary-600 transition duration-200">
+                      <button
+                        type="submit"
+                        className="w-full bg-primary-500 text-white py-3 rounded text-sm font-semibold hover:bg-primary-600 transition duration-200"
+                      >
                         Log into Account
                       </button>
                     </div>

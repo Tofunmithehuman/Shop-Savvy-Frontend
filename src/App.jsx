@@ -8,6 +8,7 @@ import Checkout from './pages/Checkout';
 import Profile from './pages/Profile';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
 import OrderConfirmation from './pages/OrderConfirmation';
 import SearchResults from './pages/SearchResults';
 import Category from './pages/Category';
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
   { path: '/profile', element: <Profile /> },
   { path: '/login', element: <Login /> },
   { path: '/register', element: <Register /> },
+  { path: '/forgot-password', element: <ForgotPassword /> },
   { path: '/order/:id', element: <OrderConfirmation /> },
   { path: '/search', element: <SearchResults /> },
   { path: '/category/:categoryId', element: <Category /> },
